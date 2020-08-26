@@ -5,9 +5,9 @@ const config = require('./webpack.config');
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
-}).listen(3000, 'localhost', err => {
+}).listen(3033, 'localhost', err => {
     if (err) {
         console.log(err);
     }
-    console.log('Listening at localhost:3000');
+    console.log('Listening at localhost:3033');
 });

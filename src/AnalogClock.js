@@ -10,12 +10,13 @@ export default class AnalogClock extends Component {
 
     constructor(props) {
         super();
-
-        const date = this.initializeTime(props.gmtOffset);
+        const {value} = props;       
+        const date = this.initializeTime(/*props.gmtOffset*/);
         this.state = {
             seconds: date[2],
             minutes: date[1],
             hour: date[0],
+            value: value,
         };
 
         this.styles = cssTransform(Styles, props);
@@ -29,20 +30,34 @@ export default class AnalogClock extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.styles = cssTransform(Styles, nextProps);
+        if(nextProps.value !== this.state.value) {
+            let date = this.initializeTime();
+            this.setState({
+                seconds: date[2],
+                minutes: date[1],
+                hour: date[0],
+                value: nextProps.value
+            })
+        }
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
     }
-
-    initializeTime(gmtOffset) {
+    /* We don't need gmtOffset feature so i get rid of it for the sake of simplicity */
+    initializeTime(/*gmtOffset*/) {
         const now = new Date();
-        if (gmtOffset && gmtOffset !== 'undefined') {
-            const offsetNow = new Date(now.valueOf() + (parseFloat(gmtOffset) * 1000 * 60 * 60));
-            return [offsetNow.getUTCHours(), offsetNow.getUTCMinutes(), offsetNow.getUTCSeconds()];
+        let value = this.state ? this.state.value : undefined;
+        if (value && typeof (value) === 'string') {
+            value = new Date(value);
+            return [value.getHours(), value.getMinutes(), value.getSeconds()];
         } else {
             return [now.getHours(), now.getMinutes(), now.getSeconds()];
         }
+            /*if (gmtOffset && gmtOffset !== 'undefined') {
+                const offsetNow = new Date(now.valueOf() + (parseFloat(gmtOffset) * 1000 * 60 * 60));
+                return [offsetNow.getUTCHours(), offsetNow.getUTCMinutes(), offsetNow.getUTCSeconds()];
+            }*/ 
     }
 
     render() {
@@ -61,8 +76,9 @@ AnalogClock.propTypes = {
         tick: PropTypes.string.isRequired,
     }),
     width: PropTypes.number,
-    gmtOffset: PropTypes.string,
+    /*gmtOffset: PropTypes.string,*/
     showSmallTicks: PropTypes.bool,
+    value: PropTypes.any,
 };
 
 AnalogClock.defaultProps = {

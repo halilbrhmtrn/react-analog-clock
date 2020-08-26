@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import AnalogClock, { Themes } from '../src/index';
 
 const WIDTH = 200;
-const GMTOFFSET = '-5.5';
 
 const customTheme = {
     background: 'transparent',
@@ -19,21 +18,36 @@ const customTheme = {
     minuteHandWidth: 1,
     hourHandWidth: 1,
 };
+const values = ["2020-08-27 09:00:00", "2020-08-27 08:45:00", "2020-08-27 04:33:00", "2020-08-27 06:18:00", "2020-08-27 05:23:00","2020-08-27 02:10:00","2020-08-27 04:15:00","2020-08-27 06:29:00","2020-08-27 03:11:00"];
 
-const Component = (
-    <div>
-        <span><AnalogClock width={WIDTH} theme={Themes.light} /></span>
-        <span><AnalogClock width={WIDTH} theme={Themes.dark} /></span>
-        <span><AnalogClock width={WIDTH} theme={Themes.aqua} /></span>
-        <span><AnalogClock width={WIDTH} theme={Themes.lime} /></span>
-        <span><AnalogClock width={WIDTH} theme={Themes.sherbert} /></span>
-        <span><AnalogClock width={WIDTH} theme={Themes.navy} /></span>
-        <span><AnalogClock width={WIDTH} theme={Themes.light} /></span>
-        <span><AnalogClock width={WIDTH} theme={customTheme} showSmallTicks={false} /></span>
+export default class ComponentToRender extends Component {
+    constructor(props) {
+        super();
+        this.state = {
+            value: values[0]
+        }
+    }
+    handleClick(e) {
+        this.setState({
+            value:values[Math.floor(Math.random()*10)],
+        })
+    }
+    render(){
+        return (
+            <div>
+                <span><AnalogClock width={WIDTH} theme={Themes.light} /></span>
+                <span><AnalogClock width={WIDTH} theme={Themes.dark} /></span>
+                <span><AnalogClock width={WIDTH} theme={Themes.aqua} /></span>
+                <span><AnalogClock width={WIDTH} theme={Themes.lime} /></span>
+                <span><AnalogClock width={WIDTH} theme={Themes.sherbert} /></span>
+                <span><AnalogClock width={WIDTH} theme={Themes.navy} /></span>
+                <span><AnalogClock width={WIDTH} theme={Themes.light} /></span>
+                <span><AnalogClock value={this.state.value} width={WIDTH} theme={customTheme} showSmallTicks={false} /></span>
+                <button onClick={this.handleClick.bind(this)}>Change</button>
+            </div>
+        );
+    }
 
-        <h2>With GMT Offset -5.5:</h2>
-        <span><AnalogClock width={WIDTH} theme={Themes.light} gmtOffset={GMTOFFSET} /></span>
-    </div>
-);
+}
 
-ReactDOM.render(Component, document.getElementById('app'));
+ReactDOM.render(<ComponentToRender/>, document.getElementById('app'));

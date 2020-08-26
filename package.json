@@ -1,6 +1,6 @@
 {
-  "name": "react-analog-clock",
-  "version": "2.1.0",
+  "name": "@halilbrhmtrn/react-analog-clock",
+  "version": "2.1.1",
   "description": "A themable analog clock component",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -19,11 +19,12 @@
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "authors": [
-    "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)"
+    "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)",
+    "Halil İbrahim Turan <halilbrhmtrn@gmail.com (https://github.com/halilbrhmtrn"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zackargyle/react-analog-clock.git"
+    "url": "https://github.com/halilbrhmtrn/react-analog-clock.git"
   },
   "peerDependencies": {
     "react": "^16.0.0",
@@ -63,7 +64,7 @@
     "time"
   ],
   "bugs": {
-    "url": "https://github.com/zackargyle/react-analog-clock/issues"
+    "url": "https://github.com/halilbrhmtrn/react-analog-clock/issues"
   },
   "npmName": "react-analog-clock",
   "npmFileMap": [

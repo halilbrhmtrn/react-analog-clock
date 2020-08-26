@@ -3,9 +3,9 @@
 AnalogClock is a themable clock component. It provides an easy way of adding a clock to your application. The clock is fully responsive based on the `width` prop you pass in.
 
 ```
-npm install --save react-analog-clock
+npm install --save @halilbrhmtrn/react-analog-clock
 ```
-
+This is the original repo: 
 Try out the [DEMO](http://zackargyle.github.io/react-analog-clock/)
 
 ![](https://raw.githubusercontent.com/zackargyle/react-analog-clock/master/demo/screenshot.png)
@@ -22,8 +22,9 @@ prop    | default
 ------- | -------
 `width` | 400px
 `theme` | Themes.dark
-`gmtOffset` (optional)| offset of `new Date()` _(e.g. '-5.5')_
+`gmtOffset` (optional)| offset of `new Date()` _(e.g. '-5.5')_ ( No offset anymore)
 `showSmallTicks` (optional) | true
+`value` | (optional) | set the time with value prop
 
 ### Themes
 Theme      | Description
