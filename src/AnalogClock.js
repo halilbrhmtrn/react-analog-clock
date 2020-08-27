@@ -46,8 +46,10 @@ export default class AnalogClock extends Component {
     /* We don't need gmtOffset feature so i get rid of it for the sake of simplicity */
     initializeTime(value) {
         const now = new Date();
-        if (value && typeof (value) === 'string') {
-            value = new Date(value);
+        if (value) {
+            if (typeof (value) === 'string') {
+                value = new Date(value);
+            }
             return [value.getHours(), value.getMinutes(), value.getSeconds()];
         } else {
             return [now.getHours(), now.getMinutes(), now.getSeconds()];
