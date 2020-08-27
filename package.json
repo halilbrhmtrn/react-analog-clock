@@ -1,6 +1,6 @@
 {
   "name": "@halilbrhmtrn/react-analog-clock",
-  "version": "2.1.1",
+  "version": "2.1.3",
   "description": "A themable analog clock component",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",

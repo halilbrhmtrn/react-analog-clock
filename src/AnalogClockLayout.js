@@ -13,7 +13,7 @@ function renderNotches({ smallTick, largeTick }, showSmallTicks) {
     return notches;
 }
 
-export default function AnalogClockLayout({ hour, minutes, seconds, styles, showSmallTicks }) {
+export default function AnalogClockLayout({ hour, minutes, seconds, styles, showSmallTicks, enableSeconds }) {
     // +1 to center align
     const secondStyle = Object.assign({}, styles.second, {
         transform: `translateX(-50%) translateY(-100%) rotate(${seconds * 6 + 1}deg)`,
@@ -24,11 +24,13 @@ export default function AnalogClockLayout({ hour, minutes, seconds, styles, show
     });
     // +1.5 to center align
     const hourStyle = Object.assign({}, styles.hour, {
-        transform: `translateX(-50%) translateY(-100%) rotate(${hour * 30 + 1.5}deg)`,
+        transform: `translateX(-50%) translateY(-100%) rotate(${hour % 12 * 30 + 1.5}deg)`,
     });
+    const renderSeconds = enableSeconds ? <div data-testid="seconds" style={secondStyle}></div> : null;
+
     return (
         <div style={styles.base}>
-            <div data-testid="seconds" style={secondStyle}></div>
+            {renderSeconds}
             <div data-testid="minutes" style={minuteStyle}></div>
             <div data-testid="hour" style={hourStyle}></div>
             <div style={styles.center}></div>
@@ -47,4 +49,5 @@ AnalogClockLayout.propTypes = {
         hour: PropTypes.object.isRequired,
     }).isRequired,
     showSmallTicks: PropTypes.bool.isRequired,
+    enableSeconds: PropTypes.bool.isRequired,
 };

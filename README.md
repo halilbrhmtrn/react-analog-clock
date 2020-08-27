@@ -25,6 +25,7 @@ prop    | default
 `gmtOffset` (optional)| offset of `new Date()` _(e.g. '-5.5')_ ( No offset anymore)
 `showSmallTicks` (optional) | true
 `value` | (optional) | set the time with value prop
+`enableSeconds` | (optional) | false (set true for displaying seconds)
 
 ### Themes
 Theme      | Description
